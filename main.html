@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KDNews</title>
+  <link rel="icon" href="Logo/KDN-WEB.png" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Pacifico&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="body-one">
+    <div class="nav-bar">
+      <div class="logo">
+        <img src="Logo/KDN-WEB.png" width="150px">
+      </div>
+      <ul class="nav-items">
+        <li class="nav-item active" data-section="ar-news">
+          <div class="section">
+            <img src="Icons/marker.png" width="15px" class="black">
+            <img src="Icons/marker-white.png" width="15px" class="white"> 
+            <p>AR NEWS</p>
+          </div>
+        </li>
+        <li class="nav-item" data-section="eng-news">
+          <div class="section">
+            <img src="Icons/earth-black.png" width="15px" class="black">
+            <img src="Icons/earth.png" width="15px" class="white">
+            <p>ENG NEWS</p>
+          </div>
+        </li>
+        <li class="nav-item" data-section="weather">
+          <div class="section">
+            <img src="Icons/cloud-sun.png" width="15px" class="black"> 
+            <img src="Icons/cloud-sun-white.png" width="15px" class="white"> 
+            <p>WEATHER</p>
+          </div>
+        </li>
+        <li class="nav-item" data-section="about">
+          <div class="section">
+            <img src="Icons/info-black.png" width="15px" class="black">
+            <img src="Icons/info.png" width="15px" class="white">
+            <p>ABOUT</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+
+    <div id="ar-news" class="main-content">
+      <h1 class="header">LATEST NEWS</h1>
+      <div id="local-news" class="news-section">
+        <div class="news-container" id="news-container">
+  
+        </div>
+      </div>
+    </div>
+
+    <div id="eng-news" class="hidden main-content" style="width: 100%;  overflow: hidden;">
+      <iframe src="engNews.html"></iframe>
+    </div>
+      
+    <div id="weather" class="hidden main-content" style="width: 100%; overflow: hidden;">
+      <iframe src="weather.html"></iframe>
+    </div>
+    <div id="about" class="hidden main-content" style="width: 100%; overflow: hidden;">
+      <iframe src="about.html"> </iframe>
+    </div>
+  <script src="script.js"></script>
+</body>
+</html>
+
