@@ -1,11 +1,12 @@
-document.querySelectorAll('.nav-item').forEach(item => {
+document.querySelectorAll('.nav-item').forEach(item => { 
     item.addEventListener('click', () => {
-      document.querySelectorAll('.nav-item').forEach(element => element.classList.remove('active'));
-      item.classList.add('active');
-      
-      document.querySelectorAll('.main-content').forEach(section => section.classList.add('hidden'));
-      const sectionId = item.getAttribute('data-section');
-      document.getElementById(sectionId).classList.remove('hidden');
+        //changing the nav-items style when click
+        document.querySelectorAll('.nav-item').forEach(element => element.classList.remove('active'));
+        item.classList.add('active');
+        //showing the corresponding section when nav-item selected
+        document.querySelectorAll('.main-content').forEach(section => section.classList.add('hidden'));
+        const sectionId = item.getAttribute('data-section');
+        document.getElementById(sectionId).classList.remove('hidden');
     });
   });
 

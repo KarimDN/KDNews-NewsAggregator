@@ -160,6 +160,7 @@ function getWeatherDetails(name, lat, lon, country, state) {
         let {sunrise, sunset} = data.sys,
         {timezone, visibility} = data,
         {humidity, pressure, feels_like} = data.main,
+        //in the following we convert the times from UNIX format into utc
         sRiseTime = moment.utc(sunrise, 'X').add(timezone, 'seconds').format('hh:mm A'),
         sSetTime = moment.utc(sunset, 'X').add(timezone, 'seconds').format('hh:mm A');
         sunCard.innerHTML = `
