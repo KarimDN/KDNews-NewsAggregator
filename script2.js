@@ -30,12 +30,10 @@ function displayMixedNews(newsItems) {
         newsItem.className = 'news-item';
 
         newsItem.innerHTML = `
-            <div class="element">
                 <h2 class="news-title"><a href="${item.url}" target="_blank">${item.headline || item.title}</a></h2>
                 <p class="news-description">${item.description || 'For More Details Read The Original Article'}</p>
                 <p class="date">${item.publishedAt || ''}</p>
                 <img src="${item.urlToImage}" alt="${item.headline || item.title}" class="news-image">
-            </div>
         `;
 
         newsContainer.appendChild(newsItem);

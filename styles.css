@@ -1,9 +1,19 @@
+*{
+  padding: 0;
+  margin: 0;
+}
+
 body {
-  background-color: #f8f8ff;
+  background-color: #f8f8ff; 
+  
+  /* background-image: url('about-bg.jpg');
+  background-position: center;
+  background-size: auto; */
 }
 
 .body-one {
   width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: row;
   margin: 0;
@@ -83,28 +93,21 @@ a {
 }
 
 .header {
-  font-family: 'Poppins';
-  font-weight: 50;
-  width: fit-content;
   height: fit-content;
-  font-size: 8em;
-  text-align: left;
-  margin: 15px 0;
-  border-bottom: 1px solid gray;
-}
-
-.element {
-  width: 98%;
-  height: fit-content;
-  border-bottom: 1px solid gray;
-  word-wrap: break-word;
-  font-family: sans-serif;
-  margin-left: 10px;
-  & img {
-    width: 300px;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  padding: 8px 0;
+  width: 100%;
+  color: #f8f8ff;
+  background-color: rgb(128, 0, 255);
+  & h1 {
+    font-family: 'Poppins';
   }
-  & .date {
-    color: gray;
+  & p {
+    font-family: sans-serif;
+    margin-top: -5px;
+    font-size: small;
   }
 }
 
@@ -118,28 +121,30 @@ iframe {
   border: none;
 }
 
-.body-three {
-  margin: 0;
-  width: 100%;
-  height: 100vh;
-  background-image: url('about-bg.jpg') !important;
-  background-size: cover;
-  background-position: center;
-  overflow: hidden;
-  position: relative;
-  & div {
-    position: absolute;
-    z-index: 1;
+.news-item {
+  width: 98%;
+  background-color: rgb(234, 234, 234);
+  height: fit-content;
+  word-wrap: break-word;
+  font-family: sans-serif;
+  margin-left: 10px;
+  border-radius: 25px;
+  overflow-wrap: break-word;
+  text-align: center;
+  margin: 10px;
+  padding: 5px;
+  margin-left: 5px;
+  & img {
+    width: 200px;
+    border-radius: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
   }
-  & .overlay{
-    width: 100%;
-    height: 100%;
-    background-color: rgb(128, 0, 255);
-    opacity: 10%;
-    z-index: 0;
+  & .date {
+    color: gray;
+    margin-top: 5px;
   }
-  & .abtContent {
-    top: 50%;
-    left: 50%;
+  & p{
+    margin-top: 10px;
   }
 }
