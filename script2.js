@@ -97,7 +97,13 @@ function getWeatherDetails(name, lat, lon, country, state) {
             <p class="air-index aqi-${data.list[0].main.aqi}">${aqiList[data.list[0].main.aqi - 1]}</p>
         </div>
         <div class="air-indices">
-            <img src="Icons/wind.png" width="70px">
+            <div>
+                <svg width="85px" height="85px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3 8H10C11.6569 8 13 6.65685 13 5C13 3.34315 11.6569 2 10 2C8.34315 2 7 3.34315 7 5" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M4 16H15C16.6569 16 18 17.3431 18 19C18 20.6569 16.6569 22 15 22C13.3431 22 12 20.6569 12 19" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M2 12H19C20.6569 12 22 10.6569 22 9C22 7.34315 20.6569 6 19 6C17.3431 6 16 7.34315 16 9" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
             <div class="item">
                 <p>PM2.5</p>
                 <h2>${pm2_5}</h2>
