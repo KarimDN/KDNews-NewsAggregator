@@ -11,6 +11,25 @@ body {
   background-size: auto; */
 }
 
+.welcomePage {
+  font-family: 'Poppins';
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  justify-content: center;
+  background-image: url('about-bg.jpg');
+  & h1 {
+    font-weight: 50;
+    font-size: 60px;
+    background-color: rgb(128, 0, 255);
+    color: #f8f8ff;
+    padding: 5px;
+  }
+  & p {
+    color: rgb(128, 0, 255)
+  }
+}
 
 .main {
   width: 100%;
