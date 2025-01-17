@@ -179,7 +179,7 @@ iframe {
       height: 2px;
       z-index: 2;
       align-self: right;
-      animation: growLine 1s ease-in-out forwards;
+      animation: growLine 500ms ease-in-out forwards;
     }
   }
   & .overlay {
@@ -191,8 +191,19 @@ iframe {
     opacity: 0.5;
   }
 }
+@keyframes growLine {
+  from {
+    width: 0;
+  }
+  to {
+    width: 300px;
+  }
+}
 
 .abtContent {
+  opacity: 0;
+  transform: translateY(50px);
+  animation: fadeInUp 750ms ease-out forwards;
   margin: 20px 100px;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -228,6 +239,16 @@ iframe {
   }
   & .weOffer {
     grid-area: p3;
+  }
+}
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
@@ -308,14 +329,5 @@ iframe {
       transform: translateY(-28px) rotate(0);
       opacity: 1;
     }
-  }
-}
-
-@keyframes growLine {
-  from {
-    width: 0;
-  }
-  to {
-    width: 300px;
   }
 }
