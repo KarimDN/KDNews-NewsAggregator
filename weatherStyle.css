@@ -167,7 +167,7 @@ body {
         & .hourly-forecast {
             display: grid;
             grid-template-columns: repeat(8, 1fr);
-            column-gap: 8px;
+            column-gap: 2px;
             & .card {
                 text-align: center;
             }

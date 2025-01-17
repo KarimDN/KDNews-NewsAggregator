@@ -10,6 +10,24 @@ document.querySelectorAll('.nav-item').forEach(item => {
     });
   });
 
+const closeButton = document.querySelector('.closeNav');
+const navBar = document.querySelector('.nav-bar');
+const mainPage = document.querySelector('.main');
+
+closeButton.addEventListener('click', () => {
+    const isOpen = closeButton.classList.contains('openNav');
+    if(!isOpen) {
+        navBar.classList.add('minimised');
+        mainPage.classList.add('main-two');
+        closeButton.classList.add('openNav');
+    } else {
+        navBar.classList.remove('minimised');
+        mainPage.classList.remove('main-two');
+        closeButton.classList.remove('openNav');
+    }
+    
+});
+
 
 const apiKey = '767c933da2msh086ccef7289f56dp1314bfjsnde075b3cf17d';
 const apis = [
