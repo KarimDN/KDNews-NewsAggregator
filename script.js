@@ -39,7 +39,7 @@ function fetchAllNews() {
         })
             .then(response => response.json())
             .then(data => {
-                if (data.results && data.results.length > 0) {
+                if (data.results && data.results.length > 0) { //checking data validity 
                     return data.results;
                 } else {
                     console.error(`No articles found for API: ${api.url}`);
@@ -54,7 +54,7 @@ function fetchAllNews() {
 
     Promise.all(fetchPromises)
         .then(allResults => {
-            const mixedNews = allResults.flat(); 
+            const mixedNews = allResults.flat(); //flatten nested arrays
             displayMixedNews(mixedNews);
         })
         .catch(error => {
@@ -67,25 +67,26 @@ function fetchAllNews() {
 function displayMixedNews(newsItems) {
     newsContainer.innerHTML = '';
 
-    newsItems.sort(() => Math.random() - 0.5);
+    newsItems.sort(() => Math.random() - 0.5); //news randomisation
 
     newsItems.forEach(item => {
-        const newsItem = document.createElement('div');
-        newsItem.className = 'news-item';
+        const newsItem = document.createElement('div');//creating the news div
+        newsItem.className = 'news-item';//giving it a class
 
         newsItem.innerHTML = `
                 <h2 class="news-title"><a href="${item.url}" target="_blank">${item.headline || item.title}</a></h2>
                 <p class="news-description">${item.content || 'For More Details Read The Original Article'}</p>
                 <p class="date">${item.date || ''}</p>
                 <img src="${item.image}" alt="${item.headline || item.title}" class="news-image">
-        `;
+        `; //filling data
 
-        newsContainer.appendChild(newsItem);
+        newsContainer.appendChild(newsItem); //making newsItem child of the container
     });
 }
 
 fetchAllNews();
 
+//making the closeNav/openNav button
 const closeButton = document.querySelector('.closeNav');
 const navBar = document.querySelector('.nav-bar');
 const mainPage = document.querySelector('.main');

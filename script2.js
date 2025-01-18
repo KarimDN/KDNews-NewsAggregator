@@ -1,3 +1,4 @@
+//fetching eng news
 const apiKey = 'e3107b434ebb49a7b3bf1f2e63a46ef0';
 const url = `https://newsapi.org/v2/top-headlines?language=en`;
 
@@ -7,8 +8,8 @@ function fetchAllNews() {
     fetch(`${url}&apiKey=${apiKey}`)
         .then(response => response.json())
         .then(data => {
-            if (data.articles && data.articles.length > 0) {
-                displayMixedNews(data.articles);
+            if (data.articles && data.articles.length > 0) { //checking if the articles are valid
+                displayNews(data.articles);
             } else {
                 console.error('No Articles Found');
                 newsContainer.innerHTML = '<p>No news articles found.</p>';
@@ -20,23 +21,21 @@ function fetchAllNews() {
         });
     }
 
-function displayMixedNews(newsItems) {
-    newsContainer.innerHTML = '';
-
-    newsItems.sort(() => Math.random() - 0.5);
-
+//function to display the eng news data
+function displayNews(newsItems) {
+    newsContainer.innerHTML = ''; //clearing the current content of the container
     newsItems.forEach(item => {
-        const newsItem = document.createElement('div');
-        newsItem.className = 'news-item';
+        const newsItem = document.createElement('div'); //creating the news div
+        newsItem.className = 'news-item'; //adding a class to the div
 
         newsItem.innerHTML = `
                 <h2 class="news-title"><a href="${item.url}" target="_blank">${item.headline || item.title}</a></h2>
                 <p class="news-description">${item.description || 'For More Details Read The Original Article'}</p>
                 <p class="date">${item.publishedAt || ''}</p>
                 <img src="${item.urlToImage}" alt="${item.headline || item.title}" class="news-image">
-        `;
+        `; //filling the data
 
-        newsContainer.appendChild(newsItem);
+        newsContainer.appendChild(newsItem);//the newsItem element is a child of the container
     });
 }
 
@@ -64,33 +63,15 @@ function getWeatherDetails(name, lat, lon, country, state) {
     let FORECAST_API_URL = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${wApiKey}`,
     WEATHER_API_URL = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${wApiKey}`,
     AIR_POLLUTION_API_URL = `https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${wApiKey}`,
-    days = [
-        'Sunday',
-        'Monday',
-        'Tuesday',
-        'Wednesday',
-        'Thursday',
-        'Friday',
-        'Saturday',
-        'Sunday'
-    ],
-    months = [
-        'Jan',
-        'Feb',
-        'Mar',
-        'Apr',
-        'May',
-        'Jun',
-        'Jul',
-        'Aug',
-        'Sep',
-        'Oct',
-        'Nov',
-        'Dec'
-    ];
 
-    fetch(AIR_POLLUTION_API_URL).then(res => res.json()).then(data => {
-      let {co, no, no2, o3, so2, pm2_5, pm10, nh3} = data.list[0].components;
+    days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'],
+
+    months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+    fetch(AIR_POLLUTION_API_URL) //requesting the aqi data 
+    .then(res => res.json())
+    .then(data => {
+      let {co, no, no2, o3, so2, pm2_5, pm10, nh3} = data.list[0].components;//extracting the aqi components
       aqiCard.innerHTML = `
         <div class="card-head">
             <p>Air Quality Index</p>
@@ -137,12 +118,14 @@ function getWeatherDetails(name, lat, lon, country, state) {
                 <h2>${o3}</h2>
             </div>
         </div>
-      `;  
+      `;  //filling the data
     }).catch(() => {
         alert('Failed to fetch Air Quality Index');
     });
 
-    fetch(WEATHER_API_URL).then(res => res.json()).then(data => {
+    fetch(WEATHER_API_URL) //requesting weather data
+    .then(res => res.json())
+    .then(data => {
         let date = new Date();
         currentWeatherCard.innerHTML = `
             <div class="current-weather">
@@ -160,13 +143,15 @@ function getWeatherDetails(name, lat, lon, country, state) {
                 <p><img src="Icons/calendar-day.png"> ${days[date.getDay()]}, ${date.getDate()}, ${months[date.getMonth()]} ${date.getFullYear()}</p>
                 <p><img src="Icons/marker.png"> ${name}, ${country}</p>
             </div>
-        `;
-        let {sunrise, sunset} = data.sys,
-        {timezone, visibility} = data,
-        {humidity, pressure, feels_like} = data.main,
+        `; //filling the current weather data
+        let {sunrise, sunset} = data.sys, //extracts sunrise and sunset properties
+        {timezone, visibility} = data, //extracts timezone and visibility
+        {humidity, pressure, feels_like} = data.main, 
+
         //in the following we convert the times from UNIX format into utc
         sRiseTime = moment.utc(sunrise, 'X').add(timezone, 'seconds').format('hh:mm A'),
         sSetTime = moment.utc(sunset, 'X').add(timezone, 'seconds').format('hh:mm A');
+
         sunCard.innerHTML = `
             <div class="card-head">
                 <p>Sunrise & Sunset</p>
@@ -191,17 +176,19 @@ function getWeatherDetails(name, lat, lon, country, state) {
                     </div>
                 </div>
             </div>
-        `;
+        `; //filling ss and sr data
         humidityVal.innerHTML = `${humidity}%`;
         pressureVal.innerHTML = `${pressure}hPa`;
         visibilityVal.innerHTML = `${visibility/1000}km`;
         feelsVal.innerHTML = `${(feels_like - 273.15).toFixed(2)}&deg;C`;
-
+        //filling other data
     }).catch(() => {
         alert('Failed to fetch current weather');
     });
 
-    fetch(FORECAST_API_URL).then(res => res.json()).then(data => {
+    fetch(FORECAST_API_URL)
+    .then(res => res.json())
+    .then(data => {
         let hourlyForecast = data.list;
         hourlyForecastCard.innerHTML = ``;
         for(i = 0; i <= 7; i++){
@@ -219,6 +206,7 @@ function getWeatherDetails(name, lat, lon, country, state) {
                 </div>
             `;
         }
+
         let uniqueForecastDays = [];
         let fiveDaysForecast = data.list.filter(forecast => {
             let forecastDate = new Date(forecast.dt_txt).getDate();
@@ -262,7 +250,9 @@ function getUserCoordinates() {
     navigator.geolocation.getCurrentPosition(position => {
         let {latitude, longitude} = position.coords;
         let REVERSE_GEOCODING_URL = `https://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&limit=1&appid=${wApiKey}`;
-        fetch(REVERSE_GEOCODING_URL).then(res => res.json()).then(data => {
+        fetch(REVERSE_GEOCODING_URL)
+        .then(res => res.json())
+        .then(data => {
             let {name, country, state} = data[0];
             getWeatherDetails(name, latitude, longitude, country, state);
         }).catch(() => {
