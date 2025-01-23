@@ -25,15 +25,14 @@ body {
     padding: 5px;
   }
   & p {
-    color: rgb(128, 0, 255)
+    color: rgb(128, 0, 255);
+    font-size: 20px;
   }
 }
 
 .main {
   width: 100%;
   height: 100%;
-  /* display: flex;
-  flex-direction: row; */
   margin: 0;
   padding: 0;
   display: grid;
@@ -386,7 +385,9 @@ iframe {
       height: 25px;
       fill: rgb(33, 33, 33);
     }
-    & a::before {
+
+    /* I saw the "socials" animation and stuff on tiktok :) */
+    & a::before { 
       content: attr(data-social);
       width: fit-content;
       font-size: 13px;
